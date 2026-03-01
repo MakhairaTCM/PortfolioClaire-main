@@ -24,7 +24,7 @@ const project: ProjectData = {
   duration: "2'30",
   composition: null,
   producer: 'Janine Hemker',
-  videoUrl: '#',
+  videoUrl: 'https://youtu.be/zKjolkqnnho?si=ysaE6niS-IOdtrPw',
   role: {
     FR: '1er assistant caméra - Black Magic Pocket Cinema, Photographe, Editeur - Première Pro',
     ENG: '1st Assistant Camera - Black Magic Pocket Cinema, Photographer, Editor - Premiere Pro',

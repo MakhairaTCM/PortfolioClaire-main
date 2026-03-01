@@ -16,12 +16,12 @@ export const AboutSection = ({ t, onImageClick }: AboutSectionProps) => {
         className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center"
       >
         <div className="relative">
-          <div className=" p-4 -3 shadow-xl border-4 border-title">
-            <LazyImage 
-              src="../src/assets/about/claire.png" 
+          <div className="p-4 shadow-xl border-4 border-title">
+            <LazyImage
+              src="../src/assets/about/claireAbout.jpg"
               className="w-full h-auto object-cover rounded-sm shadow-sm cursor-pointer"
               alt="Claire"
-              onClick={() => onImageClick(["../src/assets/about/claire.png"], 0)}
+              onClick={() => onImageClick(["../src/assets/about/claireAbout.jpg"], 0)}
             />
             <p className="mt-4 text-[10px] text-center opacity-40 uppercase tracking-widest">Subject: Claire B.L.</p>
           </div>

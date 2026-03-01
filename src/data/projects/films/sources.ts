@@ -16,7 +16,7 @@ const project: ProjectData = {
   duration: "2'30",
   composition: null,
   producer: 'Claire Buhaceanu Laborde',
-  videoUrl: '#',
+  videoUrl: 'https://youtu.be/NeIuGn0oM4Q?si=1omCvAk2aSP6Y6HA',
   role: {
     FR: 'Ecriture, Directeur, Editeur',
     ENG: 'Writing, Director, Editor',

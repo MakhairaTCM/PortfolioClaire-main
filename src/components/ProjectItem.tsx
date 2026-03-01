@@ -1,13 +1,47 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { Play, ArrowRight, ChevronDown } from "lucide-react";
+import { Play, ArrowRight, ChevronDown, X, FileText } from "lucide-react";
 import { LazyImage } from "./LazyImage";
 
-function getYouTubeEmbedUrl(url: string) {
+function getYouTubeId(url: string): string | null {
   if (!url || url === '#') return null;
-  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
   const match = url.match(regExp);
-  return (match && match[2].length === 11) ? `https://www.youtube.com/embed/${match[2]}` : null;
+  return match && match[2].length === 11 ? match[2] : null;
+}
+
+function getYouTubeEmbedUrl(url: string) {
+  const id = getYouTubeId(url);
+  return id ? `https://www.youtube.com/embed/${id}` : null;
+}
+
+function YouTubeFacade({ embedUrl, videoId, title }: { embedUrl: string; videoId: string; title: string }) {
+  const [active, setActive] = useState(false);
+  if (active) {
+    return (
+      <iframe
+        src={`${embedUrl}?autoplay=1`}
+        className="w-full h-full border-0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+        title={title}
+      />
+    );
+  }
+  return (
+    <div
+      className="relative w-full h-full cursor-pointer group"
+      onClick={() => setActive(true)}
+      style={{ backgroundImage: `url(https://img.youtube.com/vi/${videoId}/hqdefault.jpg)`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+    >
+      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+          <Play size={28} className="text-zinc-900 fill-zinc-900 ml-1" />
+        </div>
+      </div>
+    </div>
+  );
 }
 
 interface ProjectItemProps {
@@ -21,9 +55,12 @@ interface ProjectItemProps {
 
 export const ProjectItem = ({ project, idx, t, lang, onImageClick }: ProjectItemProps) => {
   const videoImage = project.images[0];
-  const otherImages = project.images.slice(1);
-  const embedUrl = getYouTubeEmbedUrl(project.videoUrl);
+  const videoId = getYouTubeId(project.videoUrl);
+  const embedUrl = videoId ? `https://www.youtube.com/embed/${videoId}` : null;
+  // When YouTube is embedded, the first image is no longer shown as cover — include all images in the grid
+  const otherImages = embedUrl ? project.images : project.images.slice(1);
   const [showBTS, setShowBTS] = useState(true);
+  const [showDoc, setShowDoc] = useState(false);
 
   return (
     <motion.div 
@@ -43,17 +80,12 @@ export const ProjectItem = ({ project, idx, t, lang, onImageClick }: ProjectItem
 
         {/* Video Embed - Mobile Only (Above Script Page) */}
         <div className="lg:hidden">
-          <div 
+          <div
             className="relative overflow-hidden bg-zinc-900"
             style={{ transform: '(-1deg)', aspectRatio: '16/9' }}
           >
-            {embedUrl ? (
-              <iframe 
-                src={embedUrl}
-                className="w-full h-full border-0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
+            {embedUrl && videoId ? (
+              <YouTubeFacade embedUrl={embedUrl} videoId={videoId} title={project.title} />
             ) : (
               <div className="relative w-full h-full">
                 <LazyImage 
@@ -107,7 +139,7 @@ export const ProjectItem = ({ project, idx, t, lang, onImageClick }: ProjectItem
         </div>
 
         {project.videoUrl !== '#' && (
-          <motion.a 
+          <motion.a
             href={project.videoUrl}
             target="_blank"
             rel="noopener noreferrer"
@@ -117,23 +149,28 @@ export const ProjectItem = ({ project, idx, t, lang, onImageClick }: ProjectItem
             {t.playReel} <ArrowRight size={16} className="group-hover:text-accent transition-colors" />
           </motion.a>
         )}
+
+        {project.documentationUrl && (
+          <motion.button
+            whileHover={{ x: 10 }}
+            onClick={() => setShowDoc(true)}
+            className="flex items-center gap-4 text-xs uppercase tracking-widest font-bold group cursor-pointer"
+          >
+            [ {t.productionFolder} ] <FileText size={16} className="group-hover:text-accent transition-colors" />
+          </motion.button>
+        )}
       </div>
 
       {/* Visuals Column */}
       <div className="lg:col-span-7 space-y-8">
         {/* Video Embed - Desktop Only */}
         <div className="hidden lg:block">
-          <div 
-            className="relative  overflow-hidden bg-zinc-900"
+          <div
+            className="relative overflow-hidden bg-zinc-900"
             style={{ transform: '(-1deg)', aspectRatio: '16/9' }}
           >
-            {embedUrl ? (
-              <iframe 
-                src={embedUrl}
-                className="w-full h-full border-0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
+            {embedUrl && videoId ? (
+              <YouTubeFacade embedUrl={embedUrl} videoId={videoId} title={project.title} />
             ) : (
               <div className="relative w-full h-full">
                 <LazyImage 
@@ -160,7 +197,7 @@ export const ProjectItem = ({ project, idx, t, lang, onImageClick }: ProjectItem
               key={i} 
               className="relative  cursor-pointer col-span-1"
               style={{ transform: `(${i % 2 === 0 ? 1 : -1}deg)` }}
-              onClick={() => onImageClick(project.images, i + 1)}
+              onClick={() => onImageClick(project.images, embedUrl ? i : i + 1)}
             >
               <LazyImage
                 src={img}
@@ -204,6 +241,36 @@ export const ProjectItem = ({ project, idx, t, lang, onImageClick }: ProjectItem
             </div>
           )}
         </div>
+      )}
+      {/* Documentation PDF Modal */}
+      {showDoc && project.documentationUrl && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="fixed inset-0 z-[100] bg-bg-95 flex flex-col"
+          onClick={() => setShowDoc(false)}
+        >
+          <div
+            className="flex items-center justify-between px-6 py-4 border-b border-title-20 shrink-0"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <p className="text-xs uppercase tracking-[0.3em] text-title opacity-60">{t.productionFolder}</p>
+            <button
+              onClick={() => setShowDoc(false)}
+              className="text-title opacity-60 hover:opacity-100 transition-opacity cursor-pointer"
+              aria-label="Close document viewer"
+            >
+              <X size={22} />
+            </button>
+          </div>
+          <div className="flex-1 overflow-hidden" onClick={(e) => e.stopPropagation()}>
+            <iframe
+              src={project.documentationUrl}
+              title={`${project.title} — ${t.productionFolder}`}
+              className="w-full h-full border-0"
+            />
+          </div>
+        </motion.div>
       )}
     </motion.div>
   );

@@ -2,9 +2,10 @@ import { Mail, MapPin, FileText, Instagram } from "lucide-react";
 
 interface FooterProps {
   t: any;
+  onCvOpen: () => void;
 }
 
-export const Footer = ({ t }: FooterProps) => {
+export const Footer = ({ t, onCvOpen }: FooterProps) => {
   return (
     <footer id="contact" className="bg-bg text-text py-24 px-6">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
@@ -29,9 +30,9 @@ export const Footer = ({ t }: FooterProps) => {
             {/* <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-title-20 flex items-center justify-center hover:bg-title hover:text-zinc-900 transition-all">
               <Linkedin size={20} />
             </a> */}
-            <a href="#" className="w-12 h-12 rounded-full border border-title-20 flex items-center justify-center hover:bg-title hover:text-zinc-900 transition-all">
+            <button onClick={onCvOpen} className="w-12 h-12 rounded-full border border-title-20 flex items-center justify-center hover:bg-title hover:text-zinc-900 transition-all cursor-pointer">
               <FileText size={20} />
-            </a>
+            </button>
             <a href="#" className="w-12 h-12 rounded-full border border-title-20 flex items-center justify-center hover:bg-title hover:text-zinc-900 transition-all">
               <Instagram size={20} />
             </a>

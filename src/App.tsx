@@ -7,6 +7,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Navbar } from "./components/Navbar";
+import { CvViewer } from "./components/CvViewer";
 import { Hero } from "./components/Hero";
 import { ProjectSection } from "./components/ProjectSection";
 import { PhotographySection } from "./components/PhotographySection";
@@ -29,6 +30,7 @@ export default function App() {
   });
   const [activeSection, setActiveSection] = useState('hero');
   const [lightbox, setLightbox] = useState<{ images: string[]; index: number } | null>(null);
+  const [showCv, setShowCv] = useState(false);
   const containerRef = useRef(null);
   const touchStartX = useRef<number | null>(null);
   const { scrollYProgress } = useScroll({
@@ -88,6 +90,16 @@ export default function App() {
     }
   }, [lightbox]);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setShowCv(false);
+    };
+    if (showCv) {
+      window.addEventListener('keydown', handleKeyDown);
+      return () => window.removeEventListener('keydown', handleKeyDown);
+    }
+  }, [showCv]);
+
   const backgroundY = useTransform(scrollYProgress, [0, 0.2], ["0%", "15%"]);
 
   return (
@@ -100,6 +112,7 @@ export default function App() {
         isMenuOpen={isMenuOpen}
         setIsMenuOpen={setIsMenuOpen}
         translations={t}
+        onCvOpen={() => setShowCv(true)}
       />
 
       {/* Main Content Area */}
@@ -136,7 +149,7 @@ export default function App() {
           onImageClick={openLightbox}
         />
 
-        <Footer t={t} />
+        <Footer t={t} onCvOpen={() => setShowCv(true)} />
       </div>
 
       {/* Lightbox Modal */}
@@ -206,6 +219,9 @@ export default function App() {
           )}
         </motion.div>
       )}
+
+      {/* CV Viewer Modal */}
+      {showCv && <CvViewer lang={lang} onClose={() => setShowCv(false)} />}
 
       {/* Scroll Progress Bar */}
       <motion.div

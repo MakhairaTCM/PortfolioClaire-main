@@ -8,15 +8,17 @@ interface NavbarProps {
   isMenuOpen: boolean;
   setIsMenuOpen: (open: boolean) => void;
   translations: any;
+  onCvOpen: () => void;
 }
 
-export const Navbar = ({ 
-  activeSection, 
-  lang, 
-  setLang, 
-  isMenuOpen, 
-  setIsMenuOpen, 
-  translations: t 
+export const Navbar = ({
+  activeSection,
+  lang,
+  setLang,
+  isMenuOpen,
+  setIsMenuOpen,
+  translations: t,
+  onCvOpen
 }: NavbarProps) => {
   const navItems = [
     { id: 'films', label: t.films },
@@ -50,9 +52,12 @@ export const Navbar = ({
               {item.label}
             </a>
           ))}
-          <a href="#" className="flex items-center gap-2 hover:text-title transition-colors mt-20 top-20">
+          <button
+            onClick={onCvOpen}
+            className="flex items-center gap-2 hover:text-title transition-colors mt-20 cursor-pointer text-left"
+          >
             {t.cv}
-          </a>
+          </button>
           {/* <a href="https://www.linkedin.com/in/claire-buhaceanu-laborde-51a74738b/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-title transition-colors">
             LINKEDIN
           </a> */}
@@ -106,7 +111,13 @@ export const Navbar = ({
           {navItems.map((item) => (
             <a key={item.id} href={`#${item.id}`} onClick={() => setIsMenuOpen(false)}>{item.label}</a>
           ))}
-          <div 
+          <button
+            onClick={() => { onCvOpen(); setIsMenuOpen(false); }}
+            className="cursor-pointer hover:opacity-70 transition-opacity"
+          >
+            {t.cv}
+          </button>
+          <div
             className="flex items-center gap-4 mt-8 border border-title-20 rounded-full px-5 py-2 text-base cursor-pointer select-none"
             onClick={() => setLang(lang === 'FR' ? 'ENG' : 'FR')}
             role="group"

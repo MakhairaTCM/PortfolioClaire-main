@@ -17,6 +17,7 @@ export interface ProjectData {
   description: LocaleText;
   images: string[]; // main gallery, first image used as cover
   behindTheScenes?: string[]; // optional BTS gallery
+  documentationUrl?: string; // optional production folder PDF
 }
 
 export interface PhotoAlbumMeta {
