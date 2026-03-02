@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cwebp -version)",
+      "Bash(ffmpeg -version)",
+      "Bash(magick -version)"
+    ]
+  }
+}
