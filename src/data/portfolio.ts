@@ -168,8 +168,32 @@ export const PHOTOGRAPHY = {
 };
 
 // Auto-generate photography albums grouped by leaf folder under `photographies/`
-type PhotoItem = { title: string; desc: string; url: string };
+type PhotoItem = { title: string; desc: string; url: string; srcPath: string };
 export type PhotoAlbum = { id: string; title: LocaleText; description?: LocaleText; items: PhotoItem[] };
+
+// Extract the order-array key from a photo's original source path
+function orderKey(albumId: string, srcPath: string): string {
+  const parts = srcPath.split('/');
+  return albumId === 'voyages2025'
+    ? parts.slice(-2).join('/')   // e.g. "bardenas2025/14.webp"
+    : parts[parts.length - 1];   // e.g. "1.webp"
+}
+
+function applyOrder(albumId: string, items: PhotoItem[], order: string[] | undefined): PhotoItem[] {
+  const numericSort = (a: PhotoItem, b: PhotoItem) => {
+    const n = (p: string) => parseInt(p.split('/').pop() ?? '0', 10);
+    return n(a.srcPath) - n(b.srcPath);
+  };
+  if (!order?.length) return [...items].sort(numericSort);
+  return [...items].sort((a, b) => {
+    const ia = order.indexOf(orderKey(albumId, a.srcPath));
+    const ib = order.indexOf(orderKey(albumId, b.srcPath));
+    if (ia === -1 && ib === -1) return numericSort(a, b);
+    if (ia === -1) return 1;
+    if (ib === -1) return -1;
+    return ia - ib;
+  });
+}
 
 const allPhotoModules = import.meta.glob(
   '/src/assets/projects/photographies/**/*.{png,PNG,jpg,JPG,jpeg,JPEG,webp,WEBP}',
@@ -214,17 +238,15 @@ Object.entries(allPhotoModules).forEach(([path, url]) => {
   album.items.push({
     title: filenameToTitle(path),
     desc: (leafMeta?.title?.FR ?? prettifyFolderName(leafFolder)),
-    url
+    url,
+    srcPath: path
   });
   albumMap.set(albumId, album);
 });
 
 export const PHOTOGRAPHY_ALBUMS: PhotoAlbum[] = Array.from(albumMap.values()).map(a => ({
   ...a,
-  items: a.items.sort((x, y) => {
-    const n = (url: string) => parseInt(url.split('/').pop() ?? '0', 10);
-    return n(x.url) - n(y.url);
-  })
+  items: applyOrder(a.id, a.items, META_BY_ID[a.id]?.order)
 })).sort((a, b) => {
   if (a.id === 'motors_and_blues') return -1;
   if (b.id === 'motors_and_blues') return 1;

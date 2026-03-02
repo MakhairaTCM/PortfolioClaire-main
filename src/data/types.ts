@@ -24,4 +24,5 @@ export interface PhotoAlbumMeta {
   id: string; // must match the leaf folder name under assets/photographies
   title: LocaleText;
   description?: LocaleText;
+  order?: string[]; // filenames in display order; use "subfolder/filename" for voyages2025
 }
