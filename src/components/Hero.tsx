@@ -104,7 +104,7 @@ export const Hero = ({ backgroundY, t }: HeroProps) => {
 
             {/* Programmes */}
             <div>
-              <h3 className="text-[10px] md:text-xs uppercase tracking-[0.3em] opacity-60 mb-3">{t.programs}</h3>
+              <h2 className="text-[10px] md:text-xs uppercase tracking-[0.3em] opacity-60 mb-3">{t.programs}</h2>
               <ul className="text-xs md:text-sm opacity-70 space-y-3">
                 <li>
                   <a href="https://www.adobe.com/products/premiere.html" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-title hover:opacity-100 transition-all duration-300 hover:translate-x-1">

@@ -3,7 +3,8 @@
     "allow": [
       "Bash(cwebp -version)",
       "Bash(ffmpeg -version)",
-      "Bash(magick -version)"
+      "Bash(magick -version)",
+      "Bash(npm install @fontsource/bebas-neue @fontsource/space-grotesk @fontsource/courier-prime)"
     ]
   }
 }
