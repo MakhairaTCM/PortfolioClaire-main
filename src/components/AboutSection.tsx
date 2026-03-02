@@ -19,7 +19,7 @@ export const AboutSection = ({ t, onImageClick }: AboutSectionProps) => {
         <div className="relative">
           <div className="p-4 shadow-xl border-4 border-title">
             <LazyImage
-              src="../src/assets/about/claireAbout.jpg"
+              src="clairePortrait"
               className="w-full h-auto object-cover rounded-sm shadow-sm cursor-pointer"
               alt="Claire"
               onClick={() => onImageClick([clairePortrait], 0)}
