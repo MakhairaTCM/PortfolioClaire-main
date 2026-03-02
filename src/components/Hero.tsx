@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { motion, MotionValue } from "motion/react";
 import { ChevronDown } from "lucide-react"; 
-import backgroundHero from "../assets/about/backgroundHero.jpg";
-import clairePhoto from "../assets/about/claire.png";
+import backgroundHero from "../assets/about/backgroundHero.webp";
+import clairePhoto from "../assets/about/claire.webp";
 
 import logoPr from "../assets/logos/Adobe_Premiere_Pro.png";
 import logoAe from "../assets/logos/After_Effects.png";
@@ -74,18 +74,21 @@ export const Hero = ({ backgroundY, t }: HeroProps) => {
                 dangerouslySetInnerHTML={{ __html: t.bio }}
               />
 
-              <div className="mt-6 border border-white/10 rounded-sm overflow-hidden">
-                <button
-                  className="w-full flex items-center justify-between px-4 py-2 text-[10px] md:text-xs uppercase tracking-[0.3em] opacity-70 hover:opacity-100 transition bg-title-5 hover:bg-title-10"
-                  onClick={() => setShowTeachings(!showTeachings)}
-                  aria-expanded={showTeachings}
-                >
-                  <span>{t.teachings}</span>
-                  <ChevronDown 
-                    size={16} 
-                    className={`transition-transform duration-300 ${showTeachings ? "rotate-180" : ""}`} 
-                  />
-                </button>
+              <div className="mt-6 border border-title-20 rounded-sm overflow-hidden">
+                <h2 className="m-0">
+                  <button
+                    className="w-full flex items-center justify-between px-4 py-2 text-[10px] md:text-xs uppercase tracking-[0.3em] opacity-70 hover:opacity-100 transition bg-title-5 hover:bg-title-10"
+                    onClick={() => setShowTeachings(!showTeachings)}
+                    aria-expanded={showTeachings}
+                    aria-controls="teachings-list"
+                  >
+                    {t.teachings}
+                    <ChevronDown
+                      size={16}
+                      className={`transition-transform duration-300 ${showTeachings ? "rotate-180" : ""}`}
+                    />
+                  </button>
+                </h2>
                 
                 <motion.div
                   initial={false}

@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { LazyImage } from "./LazyImage";
-import clairePortrait from '../assets/about/claireAbout.jpg';
+import clairePortrait from '../assets/about/claireAbout.webp';
 
 interface AboutSectionProps {
   t: any;
