@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { motion, MotionValue } from "motion/react";
 import { ChevronDown } from "lucide-react"; 
-import backgroundHero from "../assets/about/backgroundHero.webp";
-import clairePhoto from "../assets/about/claire.webp";
+import backgroundHero from "../assets/about/backgroundHero.jpg";
+import clairePhoto from "../assets/about/claire.png";
 
 import logoPr from "../assets/logos/Adobe_Premiere_Pro.png";
 import logoAe from "../assets/logos/After_Effects.png";
