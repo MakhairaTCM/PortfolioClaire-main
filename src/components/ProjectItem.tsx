@@ -34,10 +34,10 @@ function YouTubeFacade({ embedUrl, videoId, title }: { embedUrl: string; videoId
       onClick={() => setActive(true)}
       style={{ backgroundImage: `url(https://img.youtube.com/vi/${videoId}/hqdefault.jpg)`, backgroundSize: 'cover', backgroundPosition: 'center' }}
     >
-      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
+      <div className="absolute inset-0 bg-bg-20 group-hover:bg-bg-40 transition-colors" />
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-          <Play size={28} className="text-zinc-900 fill-zinc-900 ml-1" />
+        <div className="w-16 h-16 rounded-full bg-title-90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+          <Play size={28} className="text-bg fill-bg ml-1" />
         </div>
       </div>
     </div>
@@ -81,7 +81,7 @@ export const ProjectItem = ({ project, idx, t, lang, onImageClick }: ProjectItem
         {/* Video Embed - Mobile Only (Above Script Page) */}
         <div className="lg:hidden">
           <div
-            className="relative overflow-hidden bg-zinc-900"
+            className="relative overflow-hidden bg-bg"
             style={{ transform: '(-1deg)', aspectRatio: '16/9' }}
           >
             {embedUrl && videoId ? (
@@ -132,9 +132,7 @@ export const ProjectItem = ({ project, idx, t, lang, onImageClick }: ProjectItem
               <span className="font-bold block mb-1 uppercase text-[10px] tracking-tighter opacity-40">{t.action}</span>
               <p>{project.description[lang]}</p>
             </div>
-            <div className="pt-4 border-t border-zinc-100">
-              <p className="text-[10px] opacity-40">{t.notes}: <span className="redacted">{t.classified}</span></p>
-            </div>
+            
           </div>
         </div>
 
@@ -166,7 +164,7 @@ export const ProjectItem = ({ project, idx, t, lang, onImageClick }: ProjectItem
         {/* Video Embed - Desktop Only */}
         <div className="hidden lg:block">
           <div
-            className="relative overflow-hidden bg-zinc-900"
+            className="relative overflow-hidden bg-bg"
             style={{ transform: '(-1deg)', aspectRatio: '16/9' }}
           >
             {embedUrl && videoId ? (

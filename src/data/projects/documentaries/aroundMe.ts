@@ -1,5 +1,4 @@
 import type { ProjectData } from '../../types';
-import documentationPdf from '../../../assets/projects/documentaries/aroundMe/documentation/PROJET DE FILM DOCUMENTAIRE.pdf?url';
 
 const imagesModules = import.meta.glob(
   '../../../assets/projects/documentaries/aroundMe/*.{png,PNG,jpg,JPG,jpeg,JPEG,webp,WEBP}',
@@ -30,7 +29,6 @@ const project: ProjectData = {
     'https://picsum.photos/seed/claire1/800/450?grayscale',
     'https://picsum.photos/seed/claire2/800/450?grayscale',
   ],
-  documentationUrl: documentationPdf,
 };
 
 export default project;

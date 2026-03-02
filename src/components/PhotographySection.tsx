@@ -50,7 +50,7 @@ function PhotoItem({ photo, onClick, albumTitle, albumDesc }: any) {
       className="pinterest-item group relative cursor-pointer"
       onClick={onClick}
     >
-      <div className="relative overflow-hidden rounded-sm bg-zinc-900">
+      <div className="relative overflow-hidden rounded-sm bg-bg">
         <LazyImage 
           src={photo.url} 
           alt={photo.title}

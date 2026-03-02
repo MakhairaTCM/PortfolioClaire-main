@@ -16,8 +16,8 @@ export const Footer = ({ t, onCvOpen }: FooterProps) => {
             // {t.location}
           </p>
           <div className="space-y-4">
-            <a href="mailto:contact@clairebl.com" className="flex items-center gap-4 hover:text-accent transition-colors">
-              <Mail size={20} /> contact@clairebl.com
+            <a href="mailto:claire.blaborde@gmail.com" className="flex items-center gap-4 hover:text-accent transition-colors">
+              <Mail size={20} /> claire.blaborde@gmail.com
             </a>
             <div className="flex items-center gap-4">
               <MapPin size={20} /> {t.locationLine ?? 'Based in France / Open to Travel'}
@@ -27,13 +27,13 @@ export const Footer = ({ t, onCvOpen }: FooterProps) => {
 
         <div className="flex flex-col justify-between items-end">
           <div className="flex gap-6">
-            {/* <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-title-20 flex items-center justify-center hover:bg-title hover:text-zinc-900 transition-all">
+            {/* <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full border border-title-20 flex items-center justify-center hover:bg-title hover:text-bg transition-all">
               <Linkedin size={20} />
             </a> */}
-            <button onClick={onCvOpen} className="w-12 h-12 rounded-full border border-title-20 flex items-center justify-center hover:bg-title hover:text-zinc-900 transition-all cursor-pointer">
+            <button onClick={onCvOpen} className="w-12 h-12 rounded-full border border-title-20 flex items-center justify-center hover:bg-title hover:text-bg transition-all cursor-pointer">
               <FileText size={20} />
             </button>
-            <a href="#" className="w-12 h-12 rounded-full border border-title-20 flex items-center justify-center hover:bg-title hover:text-zinc-900 transition-all">
+            <a href="#" className="w-12 h-12 rounded-full border border-title-20 flex items-center justify-center hover:bg-title hover:text-bg transition-all">
               <Instagram size={20} />
             </a>
           </div>

@@ -8,6 +8,7 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { Navbar } from "./components/Navbar";
 import { CvViewer } from "./components/CvViewer";
+import futurPdf from "./assets/futur/PROJET DE FILM DOCUMENTAIRE.pdf?url";
 import { Hero } from "./components/Hero";
 import { ProjectSection } from "./components/ProjectSection";
 import { PhotographySection } from "./components/PhotographySection";
@@ -31,6 +32,7 @@ export default function App() {
   const [activeSection, setActiveSection] = useState('hero');
   const [lightbox, setLightbox] = useState<{ images: string[]; index: number } | null>(null);
   const [showCv, setShowCv] = useState(false);
+  const [showFutur, setShowFutur] = useState(false);
   const containerRef = useRef(null);
   const touchStartX = useRef<number | null>(null);
   const { scrollYProgress } = useScroll({
@@ -113,6 +115,7 @@ export default function App() {
         setIsMenuOpen={setIsMenuOpen}
         translations={t}
         onCvOpen={() => setShowCv(true)}
+        onFuturOpen={() => setShowFutur(true)}
       />
 
       {/* Main Content Area */}
@@ -222,6 +225,33 @@ export default function App() {
 
       {/* CV Viewer Modal */}
       {showCv && <CvViewer lang={lang} onClose={() => setShowCv(false)} />}
+
+      {/* Futur Projects Modal */}
+      {showFutur && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="fixed inset-0 z-[100] bg-bg-95 flex flex-col"
+          onClick={() => setShowFutur(false)}
+        >
+          <div
+            className="flex items-center justify-between px-6 py-4 border-b border-title-20 shrink-0"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <p className="text-xs uppercase tracking-[0.3em] text-title opacity-60">{t.futurProjects}</p>
+            <button
+              onClick={() => setShowFutur(false)}
+              className="text-title opacity-60 hover:opacity-100 transition-opacity cursor-pointer"
+              aria-label="Close"
+            >
+              <X size={22} />
+            </button>
+          </div>
+          <div className="flex-1 overflow-hidden" onClick={(e) => e.stopPropagation()}>
+            <iframe src={futurPdf} title={t.futurProjects} className="w-full h-full border-0" />
+          </div>
+        </motion.div>
+      )}
 
       {/* Scroll Progress Bar */}
       <motion.div

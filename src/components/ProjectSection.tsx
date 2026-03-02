@@ -14,7 +14,7 @@ export const ProjectSection = ({ id, title, projects, t, lang, onImageClick }: P
     <section id={id} className="py-24 px-6 max-w-6xl mx-auto">
       <div className="mb-20">
         <h2 className="text-sm uppercase tracking-[0.5em] mb-4 opacity-40">{title}</h2>
-        <div className="h-[1px] w-full bg-zinc-800" />
+        <div className="h-[1px] w-full bg-title-20" />
       </div>
 
       <div className="space-y-40">

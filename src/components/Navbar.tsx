@@ -9,6 +9,7 @@ interface NavbarProps {
   setIsMenuOpen: (open: boolean) => void;
   translations: any;
   onCvOpen: () => void;
+  onFuturOpen: () => void;
 }
 
 export const Navbar = ({
@@ -18,7 +19,8 @@ export const Navbar = ({
   isMenuOpen,
   setIsMenuOpen,
   translations: t,
-  onCvOpen
+  onCvOpen,
+  onFuturOpen
 }: NavbarProps) => {
   const navItems = [
     { id: 'films', label: t.films },
@@ -53,8 +55,14 @@ export const Navbar = ({
             </a>
           ))}
           <button
-            onClick={onCvOpen}
+            onClick={onFuturOpen}
             className="flex items-center gap-2 hover:text-title transition-colors mt-20 cursor-pointer text-left"
+          >
+            {t.futurProjects}
+          </button>
+          <button
+            onClick={onCvOpen}
+            className="flex items-center gap-2 hover:text-title transition-colors cursor-pointer text-left"
           >
             {t.cv}
           </button>
@@ -111,6 +119,12 @@ export const Navbar = ({
           {navItems.map((item) => (
             <a key={item.id} href={`#${item.id}`} onClick={() => setIsMenuOpen(false)}>{item.label}</a>
           ))}
+          <button
+            onClick={() => { onFuturOpen(); setIsMenuOpen(false); }}
+            className="cursor-pointer hover:opacity-70 transition-opacity"
+          >
+            {t.futurProjects}
+          </button>
           <button
             onClick={() => { onCvOpen(); setIsMenuOpen(false); }}
             className="cursor-pointer hover:opacity-70 transition-opacity"
