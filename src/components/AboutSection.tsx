@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { LazyImage } from "./LazyImage";
+import clairePortrait from '../assets/about/claireAbout.jpg';
 
 interface AboutSectionProps {
   t: any;
@@ -21,7 +22,7 @@ export const AboutSection = ({ t, onImageClick }: AboutSectionProps) => {
               src="../src/assets/about/claireAbout.jpg"
               className="w-full h-auto object-cover rounded-sm shadow-sm cursor-pointer"
               alt="Claire"
-              onClick={() => onImageClick(["../src/assets/about/claireAbout.jpg"], 0)}
+              onClick={() => onImageClick([clairePortrait], 0)}
             />
             <p className="mt-4 text-[10px] text-center opacity-40 uppercase tracking-widest">Subject: Claire B.L.</p>
           </div>
