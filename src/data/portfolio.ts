@@ -47,7 +47,7 @@ export const TRANSLATIONS = {
     about: "À propos",
     contact: "Contact",
     cv: "CV",
-    futurProjects: "Projets Futurs Master",
+    futurProjects: "Projet documentaire, Master",
     director: "Réalisatrice",
     editor: "Monteuse",
     cinematographer: "Directrice de la photographie",
@@ -102,7 +102,7 @@ export const TRANSLATIONS = {
     about: "About",
     contact: "Contact",
     cv: "CV",
-    futurProjects: "Future Master Projects",
+    futurProjects: "Documentary Project, Master",
     director: "Director",
     editor: "Editor",
     cinematographer: "Cinematographer",
@@ -221,7 +221,10 @@ Object.entries(allPhotoModules).forEach(([path, url]) => {
 
 export const PHOTOGRAPHY_ALBUMS: PhotoAlbum[] = Array.from(albumMap.values()).map(a => ({
   ...a,
-  items: a.items.sort((x, y) => x.url.localeCompare(y.url))
+  items: a.items.sort((x, y) => {
+    const n = (url: string) => parseInt(url.split('/').pop() ?? '0', 10);
+    return n(x.url) - n(y.url);
+  })
 })).sort((a, b) => {
   if (a.id === 'motors_and_blues') return -1;
   if (b.id === 'motors_and_blues') return 1;

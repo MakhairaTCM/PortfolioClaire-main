@@ -23,12 +23,15 @@ export const Hero = ({ backgroundY, t }: HeroProps) => {
       
       {/* Moitié Supérieure - Fond et Titre */}
       <div className="h-[50vh] w-full relative overflow-hidden shrink-0">
-        <motion.img 
+        <motion.img
           style={{ y: backgroundY }}
-          src={backgroundHero} 
+          src={backgroundHero}
           className="w-full h-[120%] object-cover object-bottom opacity-50"
           alt="Hero background"
           referrerPolicy="no-referrer"
+          fetchPriority="high"
+          width={1920}
+          height={1280}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent via-60% to-black/70" />
         
@@ -52,11 +55,13 @@ export const Hero = ({ backgroundY, t }: HeroProps) => {
           transition={{ delay: 0.3 }}
           className="-mt-24 md:-mt-36 mb-10 p-2 w-48 md:w-60 shadow-2xl relative z-30"
         >
-          <img 
-            src={clairePhoto} 
-            className="w-full h-auto "
+          <img
+            src={clairePhoto}
+            className="w-full h-auto"
             alt="Claire"
             referrerPolicy="no-referrer"
+            width={800}
+            height={1200}
           />
         </motion.div>
 
@@ -91,6 +96,7 @@ export const Hero = ({ backgroundY, t }: HeroProps) => {
                 </h2>
                 
                 <motion.div
+                  id="teachings-list"
                   initial={false}
                   animate={{ height: showTeachings ? "auto" : 0, opacity: showTeachings ? 1 : 0 }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
@@ -111,31 +117,31 @@ export const Hero = ({ backgroundY, t }: HeroProps) => {
               <ul className="text-xs md:text-sm opacity-70 space-y-3">
                 <li>
                   <a href="https://www.adobe.com/products/premiere.html" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-title hover:opacity-100 transition-all duration-300 hover:translate-x-1">
-                    <img src={logoPr} alt="Premiere Pro" className="h-5 md:h-6 object-contain shrink-0" />
+                    <img src={logoPr} alt="Premiere Pro" className="h-5 md:h-6 object-contain shrink-0" width={64} height={64} />
                     {t.programsLabels?.pr ?? 'Premiere Pro'}
                   </a>
                 </li>
                 <li>
                   <a href="https://www.adobe.com/products/aftereffects.html" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-title hover:opacity-100 transition-all duration-300 hover:translate-x-1">
-                    <img src={logoAe} alt="After Effects" className="h-5 md:h-6 object-contain shrink-0" />
+                    <img src={logoAe} alt="After Effects" className="h-5 md:h-6 object-contain shrink-0" width={64} height={64} />
                     {t.programsLabels?.ae ?? 'After Effects'}
                   </a>
                 </li>
                 <li>
                   <a href="https://www.avid.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-title hover:opacity-100 transition-all duration-300 hover:translate-x-1">
-                    <img src={logoAvid} alt="Avid Suite" className="h-5 md:h-6 object-contain shrink-0" />
+                    <img src={logoAvid} alt="Avid Suite" className="h-5 md:h-6 object-contain shrink-0" width={64} height={64} />
                     {t.programsLabels?.avid ?? 'Avid Suite'}
                   </a>
                 </li>
                 <li>
                   <a href="https://www.blackmagicdesign.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-title hover:opacity-100 transition-all duration-300 hover:translate-x-1">
-                    <img src={logoResolve} alt="Blackmagic Design" className="h-5 md:h-6 object-contain shrink-0" />
+                    <img src={logoResolve} alt="Blackmagic Design" className="h-5 md:h-6 object-contain shrink-0" width={64} height={64} />
                     {t.programsLabels?.resolve ?? 'Blackmagic Design'}
                   </a>
                 </li>
                 <li>
                   <a href="https://www.adobe.com/products/photoshop-lightroom.html" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-title hover:opacity-100 transition-all duration-300 hover:translate-x-1">
-                    <img src={logoLr} alt="Lightroom" className="h-5 md:h-6 object-contain shrink-0" />
+                    <img src={logoLr} alt="Lightroom" className="h-5 md:h-6 object-contain shrink-0" width={64} height={64} />
                     {t.programsLabels?.lr ?? 'Lightroom'}
                   </a>
                 </li>

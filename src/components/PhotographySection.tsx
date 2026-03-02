@@ -41,30 +41,26 @@ export const PhotographySection = ({ albums, t, onImageClick, lang }: Photograph
   );
 };
 
-function PhotoItem({ photo, onClick, albumTitle, albumDesc }: any) {
+function PhotoItem({ photo, onClick }: any) {
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="pinterest-item group relative cursor-pointer"
+      className="pinterest-item cursor-pointer group"
       onClick={onClick}
     >
       <div className="relative overflow-hidden rounded-sm bg-bg">
-        <LazyImage 
-          src={photo.url} 
+        <LazyImage
+          src={photo.url}
           alt={photo.title}
-          className="w-full h-auto group-hover:grayscale-0 transition-all duration-700 ease-in-out"
+          className="w-full h-auto transition-all duration-700 ease-in-out group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-bg-20 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-          <div className="text-title">
-            <p className="text-[10px] font-bold uppercase tracking-widest">{photo.title}</p>
-            <p className="text-[8px] opacity-70 italic">{photo.desc}</p>
-            {(albumTitle || albumDesc) && (
-              <p className="text-[8px] opacity-60 mt-1">{albumTitle}{albumDesc ? ` — ${albumDesc}` : ''}</p>
-            )}
+        {photo.desc && (
+          <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+            <p className="text-white text-[10px] uppercase tracking-[0.2em] leading-relaxed">{photo.desc}</p>
           </div>
-        </div>
+        )}
       </div>
     </motion.div>
   );
