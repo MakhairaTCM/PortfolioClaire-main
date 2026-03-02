@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { LazyImage } from "./LazyImage";
-import clairePortrait from '../assets/about/claireAbout.jpg';
+import clairePortrait from '../../assets/about/claireAbout.jpg';
 
 interface AboutSectionProps {
   t: any;
@@ -19,7 +19,7 @@ export const AboutSection = ({ t, onImageClick }: AboutSectionProps) => {
         <div className="relative">
           <div className="p-4 shadow-xl border-4 border-title">
             <LazyImage
-              src="clairePortrait"
+              src={clairePortrait}
               className="w-full h-auto object-cover rounded-sm shadow-sm cursor-pointer"
               alt="Claire"
               onClick={() => onImageClick([clairePortrait], 0)}
