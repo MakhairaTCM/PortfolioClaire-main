@@ -77,6 +77,55 @@ Le site auto-découvre les médias (photos, stills) depuis les dossiers `src/ass
 
 Les albums sont générés automatiquement — aucune configuration supplémentaire n'est nécessaire.
 
+## Réorganiser l'ordre des photos
+
+L'ordre des photos dans chaque album est contrôlé par un tableau `order` dans le fichier de métadonnées correspondant.
+
+### Utiliser l'éditeur drag & drop (recommandé)
+
+L'éditeur visuel est intégré au projet. Il affiche les photos exactement comme sur le site et permet de réorganiser par glisser-déposer.
+
+**1.** Lancer le serveur de développement (`npm run dev`)
+
+**2.** Ouvrir l'éditeur : `http://localhost:3000/?editor`
+
+**3.** Glisser-déposer les photos dans l'ordre souhaité — le numéro de position (jaune) se met à jour en temps réel
+
+**4.** Cliquer sur **Copy** sous l'album
+
+**5.** Coller dans le fichier de métadonnées correspondant :
+
+| Album | Fichier |
+|---|---|
+| Motor & Blues | `src/data/projects/photographies/motors_and_blues.ts` |
+| Voyages 2025 | `src/data/projects/photographies/voyages2025.ts` |
+
+Coller le bloc `order: [...]` à l'intérieur de l'objet `meta` :
+
+```ts
+const meta: PhotoAlbumMeta = {
+  id: 'motors_and_blues',
+  title: { FR: 'Motor & Blues', ENG: 'Motor & Blues' },
+  order: [
+    '3.webp',
+    '1.webp',
+    '5.webp',
+    // ...
+  ],
+};
+```
+
+Pour **Voyages 2025**, les clés incluent le sous-dossier (`bardenas2025/14.webp`, `Irlande2025/2.webp`…) ce qui permet d'intercaler librement les destinations.
+
+**6.** Revenir sur `http://localhost:3000/` pour vérifier le résultat.
+
+> Les photos absentes du tableau `order` s'ajoutent automatiquement à la fin (tri numérique).
+
+### Notes
+
+- L'éditeur est une page temporaire déjà intégrée — aucune installation requise.
+- Si l'éditeur n'est plus nécessaire, supprimer `src/components/PhotoOrderEditor.tsx` et retirer les 3 lignes correspondantes dans `src/main.tsx`.
+
 ## Système de couleurs
 
 Toutes les couleurs du site sont définies via des variables CSS dans `src/index.css` :
