@@ -20,8 +20,9 @@ export const Footer = ({ t, onCvOpen, onImageClick }: FooterProps) => {
             <div className="p-4 border-4 border-title shadow-xl">
               <LazyImage
                 src={clairePortrait}
-                className="w-full h-auto object-cover rounded-sm cursor-pointer"
+                className="w-full cursor-pointer"
                 alt="Claire"
+                naturalHeight
                 onClick={() => onImageClick([clairePortrait], 0)}
               />
               <p className="mt-4 text-[10px] text-center opacity-40 uppercase tracking-widest">Subject: Claire B.L.</p>

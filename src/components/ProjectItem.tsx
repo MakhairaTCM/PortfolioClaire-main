@@ -88,9 +88,10 @@ export const ProjectItem = ({ project, idx, t, lang, onImageClick }: ProjectItem
               <YouTubeFacade embedUrl={embedUrl} videoId={videoId} title={project.title} />
             ) : (
               <div className="relative w-full h-full">
-                <LazyImage 
-                  src={videoImage} 
-                  className="w-full h-full object-cover hover:grayscale-0 transition-all duration-700 cursor-pointer"
+                <LazyImage
+                  src={videoImage}
+                  className="w-full h-full cursor-pointer"
+                  imgClassName="hover:grayscale-0"
                   alt={`${project.title} video`}
                   onClick={() => onImageClick(project.images, 0)}
                 />
@@ -171,9 +172,10 @@ export const ProjectItem = ({ project, idx, t, lang, onImageClick }: ProjectItem
               <YouTubeFacade embedUrl={embedUrl} videoId={videoId} title={project.title} />
             ) : (
               <div className="relative w-full h-full">
-                <LazyImage 
-                  src={videoImage} 
-                  className="w-full h-full object-cover hover:grayscale-0 transition-all duration-700 cursor-pointer"
+                <LazyImage
+                  src={videoImage}
+                  className="w-full h-full cursor-pointer"
+                  imgClassName="hover:grayscale-0"
                   alt={`${project.title} video`}
                   onClick={() => onImageClick(project.images, 0)}
                 />
@@ -199,7 +201,9 @@ export const ProjectItem = ({ project, idx, t, lang, onImageClick }: ProjectItem
             >
               <LazyImage
                 src={img}
-                className="w-full h-full object-cover hover:grayscale-0 transition-all duration-700"
+                className="w-full"
+                imgClassName="hover:grayscale-0"
+                naturalHeight
                 alt={`${project.title} still ${i}`}
               />
             </div>
@@ -231,7 +235,9 @@ export const ProjectItem = ({ project, idx, t, lang, onImageClick }: ProjectItem
                 >
                   <LazyImage
                     src={img}
-                    className="w-full h-full object-cover hover:grayscale-0 transition-all duration-700"
+                    className="w-full"
+                    imgClassName="hover:grayscale-0"
+                    naturalHeight
                     alt={`${project.title} BTS ${i}`}
                   />
                 </div>

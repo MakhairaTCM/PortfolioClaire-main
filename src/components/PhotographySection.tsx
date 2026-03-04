@@ -54,7 +54,9 @@ function PhotoItem({ photo, onClick }: any) {
         <LazyImage
           src={photo.url}
           alt={photo.title}
-          className="w-full h-auto transition-all duration-700 ease-in-out group-hover:scale-105"
+          className="w-full"
+          imgClassName="group-hover:scale-105"
+          naturalHeight
         />
         {photo.desc && (
           <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
