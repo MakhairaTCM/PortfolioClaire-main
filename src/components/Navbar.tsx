@@ -26,7 +26,6 @@ export const Navbar = ({
     { id: 'films', label: t.films },
     { id: 'documentaries', label: t.documentaries },
     { id: 'photography', label: t.photography },
-    { id: 'about', label: t.about },
     { id: 'contact', label: t.contact }
   ];
 

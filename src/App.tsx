@@ -12,7 +12,6 @@ import futurPdf from "./assets/futur/PROJET DE FILM DOCUMENTAIRE.pdf?url";
 import { Hero } from "./components/Hero";
 import { ProjectSection } from "./components/ProjectSection";
 import { PhotographySection } from "./components/PhotographySection";
-import { AboutSection } from "./components/AboutSection";
 import { Footer } from "./components/Footer";
 import { TRANSLATIONS, PROJECTS, PHOTOGRAPHY_ALBUMS } from "./data/portfolio";
 
@@ -57,7 +56,7 @@ export default function App() {
   }, [lang]);
 
   useEffect(() => {
-    const sections = ['hero', 'films', 'documentaries', 'photography', 'about', 'contact'];
+    const sections = ['hero', 'films', 'documentaries', 'photography', 'contact'];
     const observerOptions = {
       root: null,
       rootMargin: '-20% 0px -70% 0px',
@@ -147,12 +146,7 @@ export default function App() {
           onImageClick={openLightbox}
         />
 
-        <AboutSection
-          t={t}
-          onImageClick={openLightbox}
-        />
-
-        <Footer t={t} onCvOpen={() => setShowCv(true)} />
+        <Footer t={t} onCvOpen={() => setShowCv(true)} onImageClick={openLightbox} />
       </div>
 
       {/* Lightbox Modal */}
