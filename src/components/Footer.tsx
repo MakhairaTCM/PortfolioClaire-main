@@ -33,7 +33,7 @@ export const Footer = ({ t, onCvOpen }: FooterProps) => {
             <button onClick={onCvOpen} aria-label="Voir le CV" className="w-12 h-12 rounded-full border border-title-20 flex items-center justify-center hover:bg-title hover:text-bg transition-all cursor-pointer">
               <FileText size={20} aria-hidden="true" />
             </button>
-            <a href="#" aria-label="Instagram" className="w-12 h-12 rounded-full border border-title-20 flex items-center justify-center hover:bg-title hover:text-bg transition-all">
+            <a href="https://www.instagram.com/kll4er?igsh=MWVua3NwYTlhcHJ2cw%3D%3D" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-12 h-12 rounded-full border border-title-20 flex items-center justify-center hover:bg-title hover:text-bg transition-all">
               <Instagram size={20} aria-hidden="true" />
             </a>
           </div>
